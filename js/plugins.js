@@ -9,7 +9,7 @@ HTMLElement.prototype.wrap = function(wrapper) {
 Fluid.plugins = {
 
   typing: function(text) {
-    if (!('Typed' in window)) { return; }
+    if (!window.Typed) { return; }
 
     var typed = new window.Typed('#subtitle', {
       strings: [
@@ -55,40 +55,26 @@ Fluid.plugins = {
     }
   },
 
-  initFancyBox: function() {
+  wrapImageWithFancyBox: function() {
     if (!$.fancybox) { return; }
 
     $('.markdown-body :not(a) > img, .markdown-body > img').each(function() {
       var $image = $(this);
-      var imageUrl = $image.attr('data-src') || $image.attr('src') || '';
-      if (CONFIG.image_zoom.img_url_replace) {
-        var rep = CONFIG.image_zoom.img_url_replace;
-        var r1 = rep[0] || '';
-        var r2 = rep[1] || '';
-        if (r1) {
-          if (/^re:/.test(r1)) {
-            r1 = r1.replace(/^re:/, '');
-            var reg = new RegExp(r1, 'gi');
-            imageUrl = imageUrl.replace(reg, r2);
-          } else {
-            imageUrl = imageUrl.replace(r1, r2);
-          }
-        }
-      }
-      var $imageWrap = $image.wrap(`
-        <a class="fancybox fancybox.image" href="${imageUrl}"
+      var imageLink = $image.attr('data-src') || $image.attr('src');
+      var $imageWrapLink = $image.wrap(`
+        <a class="fancybox fancybox.image" href="${imageLink}"
           itemscope itemtype="http://schema.org/ImageObject" itemprop="url"></a>`
       ).parent('a');
       if ($image.is('.group-image-container img')) {
-        $imageWrap.attr('data-fancybox', 'group').attr('rel', 'group');
+        $imageWrapLink.attr('data-fancybox', 'group').attr('rel', 'group');
       } else {
-        $imageWrap.attr('data-fancybox', 'default').attr('rel', 'default');
+        $imageWrapLink.attr('data-fancybox', 'default').attr('rel', 'default');
       }
 
       var imageTitle = $image.attr('title') || $image.attr('alt');
       if (imageTitle) {
-        $imageWrap.append(`<p class="image-caption">${imageTitle}</p>`);
-        $imageWrap.attr('title', imageTitle).attr('data-caption', imageTitle);
+        $imageWrapLink.append(`<p class="image-caption">${imageTitle}</p>`);
+        $imageWrapLink.attr('title', imageTitle).attr('data-caption', imageTitle);
       }
     });
 
@@ -103,8 +89,8 @@ Fluid.plugins = {
     });
   },
 
-  initAnchor: function() {
-    if (!('anchors' in window)) { return; }
+  registerAnchor: function() {
+    if (!window.anchors) { return; }
 
     window.anchors.options = {
       placement: CONFIG.anchorjs.placement,
@@ -121,9 +107,8 @@ Fluid.plugins = {
     window.anchors.add(res.join(', '));
   },
 
-  initCopyCode: function() {
-    if (!('ClipboardJS' in window)) { return; }
-
+  registerCopyCode: function() {
+    if (!window.ClipboardJS) { return; }
     function getBgClass(ele) {
       if (ele.length === 0) {
         return 'copy-btn-dark';
@@ -162,6 +147,31 @@ Fluid.plugins = {
         e.trigger.outerHTML = tmp;
       }, 2000);
     });
+  },
+
+  registerImageLoaded: function() {
+    var bg = document.getElementById('banner');
+    if (bg) {
+      var src = bg.style.backgroundImage;
+      var url = src.match(/\((.*?)\)/)[1].replace(/(['"])/g, '');
+      var img = new Image();
+      img.onload = function() {
+        window.NProgress && window.NProgress.inc(0.2);
+      };
+      img.src = url;
+      if (img.complete) { img.onload(); }
+    }
+
+    var notLazyImages = $('main img:not([lazyload])');
+    var total = notLazyImages.length;
+    for (const img of notLazyImages) {
+      const old = img.onload;
+      img.onload = function() {
+        old && old();
+        window.NProgress && window.NProgress.inc(0.5 / total);
+      };
+      if (img.complete) { img.onload(); }
+    }
   }
 
 };

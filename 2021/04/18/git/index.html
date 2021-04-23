@@ -14,11 +14,11 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#a5dff9">
-  <meta name="description" content="Git常用命令以及如何同步上游仓库">
+  <meta name="description" content="Git常用命令以及如何同步上游分支代码">
   <meta name="author" content="Yi Jiu">
   <meta name="keywords" content="">
   
-  <title>Git个人常用操作 - WowYiJiu</title>
+  <title>用Git手动同步上游分支代码 - WowYiJiu</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
 
@@ -56,7 +56,7 @@
 
   <script id="fluid-configs">
     var Fluid = window.Fluid || {};
-    var CONFIG = {"hostname":"wowyijiu.github.io","root":"/","version":"1.8.10","typing":{"enable":true,"typeSpeed":120,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
+    var CONFIG = {"hostname":"wowyijiu.github.io","root":"/","version":"1.8.9-a","typing":{"enable":true,"typeSpeed":120,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null}}};
   </script>
   <script  src="/js/utils.js" ></script>
   <script  src="/js/color-schema.js" ></script>
@@ -98,8 +98,7 @@
           
           
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" target="_self" role="button"
-                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="iconfont icon-book"></i>
                 文章
               </a>
@@ -162,22 +161,22 @@
           
           
             <li class="nav-item">
-              <a class="nav-link" href="/comment/">
+              <a class="nav-link" href="/messageboard/">
                 <i class="iconfont icon-comment"></i>
-                留言
+                留言板
               </a>
             </li>
           
         
         
           <li class="nav-item" id="search-btn">
-            <a class="nav-link" target="_self" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
+            <a class="nav-link" data-toggle="modal" data-target="#modalSearch">&nbsp;<i
                 class="iconfont icon-search"></i>&nbsp;</a>
           </li>
         
         
           <li class="nav-item" id="color-toggle-btn">
-            <a class="nav-link" target="_self">&nbsp;<i
+            <a class="nav-link" href="javascript:">&nbsp;<i
                 class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
           </li>
         
@@ -192,7 +191,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="Git个人常用操作">
+            <span class="h2" id="subtitle" title="用Git手动同步上游分支代码">
               
             </span>
 
@@ -219,7 +218,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      457 字
+      464 字
     </span>
   
 
@@ -229,7 +228,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      5
+      6
        分钟
     </span>
   
@@ -259,57 +258,34 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">Git个人常用操作</h1>
+            <h1 style="display: none">用Git手动同步上游分支代码</h1>
             
             <div class="markdown-body">
-              <h1 id="Git常用命令"><a href="#Git常用命令" class="headerlink" title="Git常用命令"></a>Git常用命令</h1><div class="hljs code-wrapper"><pre><code class="hljs shell"><span class="hljs-meta">$</span><span class="bash"> git init <span class="hljs-comment"># 初始化Git仓库</span></span>
-<span class="hljs-meta">$</span><span class="bash"> git <span class="hljs-built_in">clone</span> [url] <span class="hljs-comment"># 拷贝一个Git仓库到本地</span></span>
-<span class="hljs-meta">$</span><span class="bash"> git add . <span class="hljs-comment"># 将所有修改过的文件提交暂存区</span></span>
-<span class="hljs-meta">$</span><span class="bash"> git status <span class="hljs-comment"># 显示有变更的文件</span></span>
-<span class="hljs-meta">$</span><span class="bash"> git diff <span class="hljs-comment"># 显示暂存区和工作区的差异</span></span>
-<span class="hljs-meta">$</span><span class="bash"> git commit -m [message] <span class="hljs-comment"># 提交暂存区到仓库区</span></span>
-<span class="hljs-meta">$</span><span class="bash"> git branch <span class="hljs-comment"># 列出所有本地分支</span></span>
-<span class="hljs-meta">$</span><span class="bash"> git branch [branch-name] <span class="hljs-comment"># 新建一个分支，但依然停留在当前分支</span></span>
-<span class="hljs-meta">$</span><span class="bash"> git checkout -b [branch] <span class="hljs-comment"># 新建一个分支，并切换到该分支</span></span>
-<span class="hljs-meta">$</span><span class="bash"> git merge [branch] <span class="hljs-comment"># 合并指定分支到当前分支</span></span>
-<span class="hljs-meta">$</span><span class="bash"> git <span class="hljs-built_in">log</span> <span class="hljs-comment"># 显示当前分支的版本历史</span></span>
-<span class="hljs-meta">$</span><span class="bash"> git reflog <span class="hljs-comment"># 显示当前分支的最近几次提交</span></span>
-<span class="hljs-meta">$</span><span class="bash"> git fetch [remote] <span class="hljs-comment"># 下载远程仓库的所有变动</span></span>
-<span class="hljs-meta">$</span><span class="bash"> git remote -v <span class="hljs-comment"># 显示所有远程仓库</span></span>
-<span class="hljs-meta">$</span><span class="bash"> git pull [remote] [branch] <span class="hljs-comment"># 取回远程仓库的变化，并与本地分支合并</span></span>
-<span class="hljs-meta">$</span><span class="bash"> git push [remote] [branch] <span class="hljs-comment"># 上传本地指定分支到远程仓库</span></span>
-<span class="hljs-meta">$</span><span class="bash"> git fetch [remote] <span class="hljs-comment"># 下载远程仓库的所有变动</span></span>
-<span class="hljs-meta">$</span><span class="bash"> git reset --hard [版本号] <span class="hljs-comment"># 将本地代码回退到指定版本</span></span></code></pre></div>
-<h1 id="Github同步上游仓库"><a href="#Github同步上游仓库" class="headerlink" title="Github同步上游仓库"></a>Github同步上游仓库</h1><div class="note note-success">
+              <h1 id="Git常用命令"><a href="#Git常用命令" class="headerlink" title="Git常用命令"></a>Git常用命令</h1><figure class="highlight text"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs text">$ git init # 初始化Git仓库<br>$ git clone [url] # 拷贝一个Git仓库到本地<br>$ git add . # 将所有修改过的文件提交暂存区<br>$ git status # 显示有变更的文件<br>$ git diff # 显示暂存区和工作区的差异<br>$ git commit -m [message] # 提交暂存区到仓库区<br>$ git branch # 列出所有本地分支<br>$ git branch [branch-name] # 新建一个分支，但依然停留在当前分支<br>$ git checkout -b [branch] # 新建一个分支，并切换到该分支<br>$ git merge [branch] # 合并指定分支到当前分支<br>$ git log # 显示当前分支的版本历史<br>$ git reflog # 显示当前分支的最近几次提交<br>$ git fetch [remote] # 下载远程仓库的所有变动<br>$ git remote -v # 显示所有远程仓库<br>$ git pull [remote] [branch] # 取回远程仓库的变化，并与本地分支合并<br>$ git push [remote] [branch] # 上传本地指定分支到远程仓库<br>$ git fetch [remote] # 下载远程仓库的所有变动<br>$ git reset --hard [版本号] # 将本地代码回退到指定版本<br></code></pre></div></td></tr></table></figure>
+<h1 id="Github同步上游分支代码"><a href="#Github同步上游分支代码" class="headerlink" title="Github同步上游分支代码"></a>Github同步上游分支代码</h1><div class="note note-success">
             <p><strong>Github进行fork后如何与上游仓库同步：重新fork很省事，但不如反复练习版本合并。</strong></p>
           </div>
 
 <p>1.查看远程仓库状态</p>
-<div class="hljs code-wrapper"><pre><code class="hljs scss">$ git remote -v
-origin  git<span class="hljs-keyword">@github</span>.<span class="hljs-attribute">com</span>:username/fork.git (fetch)
-origin  git<span class="hljs-keyword">@github</span>.<span class="hljs-attribute">com</span>:username/fork.git (push)</code></pre></div>
+<figure class="highlight scss"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs scss">$ git remote -v<br>origin  git<span class="hljs-keyword">@github</span>.<span class="hljs-attribute">com</span>:username/fork.git (fetch)<br>origin  git<span class="hljs-keyword">@github</span>.<span class="hljs-attribute">com</span>:username/fork.git (push)<br></code></pre></div></td></tr></table></figure>
 
 <p>2.添加upstream(即fork的原仓库)</p>
-<div class="hljs code-wrapper"><pre><code class="hljs routeros">$ git remote <span class="hljs-builtin-name">add</span> upstream ssh.git</code></pre></div>
+<figure class="highlight routeros"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs routeros">$ git remote <span class="hljs-builtin-name">add</span> upstream ssh.git<br></code></pre></div></td></tr></table></figure>
 
 <p>3.查看是否添加成功</p>
-<div class="hljs code-wrapper"><pre><code class="hljs perl">$ git remote -v
-origin  git@github.com:username/fork.git (fetch)
-origin  git@github.com:username/fork.git (<span class="hljs-keyword">push</span>)
-upstream  ssh (fetch)
-upstream ssh (<span class="hljs-keyword">push</span>)</code></pre></div>
+<figure class="highlight perl"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs perl">$ git remote -v<br>origin  git@github.com:username/fork.git (fetch)<br>origin  git@github.com:username/fork.git (<span class="hljs-keyword">push</span>)<br>upstream  ssh (fetch)<br>upstream ssh (<span class="hljs-keyword">push</span>)<br></code></pre></div></td></tr></table></figure>
 
 <p>4.拉取上游仓库更新</p>
-<div class="hljs code-wrapper"><pre><code class="hljs elixir"><span class="hljs-variable">$ </span>git fetch upstream</code></pre></div>
+<figure class="highlight elixir"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs elixir"><span class="hljs-variable">$ </span>git fetch upstream<br></code></pre></div></td></tr></table></figure>
 
 <p>5.切换到主分支</p>
-<div class="hljs code-wrapper"><pre><code class="hljs crmsh">$ git checkout <span class="hljs-literal">master</span></code></pre></div>
+<figure class="highlight crmsh"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs crmsh">$ git checkout <span class="hljs-literal">master</span><br></code></pre></div></td></tr></table></figure>
 
 <p>6.合并上游更新</p>
-<div class="hljs code-wrapper"><pre><code class="hljs cos">$ git <span class="hljs-keyword">merge</span> upstream/master</code></pre></div>
+<figure class="highlight cos"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs cos">$ git <span class="hljs-keyword">merge</span> upstream/master<br></code></pre></div></td></tr></table></figure>
 
 <p>7.将更新后的代码推送到自己的远程仓库</p>
-<div class="hljs code-wrapper"><pre><code class="hljs maxima">$ git <span class="hljs-built_in">push</span> <span class="hljs-built_in">origin</span> master</code></pre></div>
+<figure class="highlight maxima"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs maxima">$ git <span class="hljs-built_in">push</span> <span class="hljs-built_in">origin</span> master<br></code></pre></div></td></tr></table></figure>
 
 <div class="note note-info">
             <p>第四五六步可以合成一个命令<code>$ git pull upstream master</code></p>
@@ -370,11 +346,11 @@ upstream ssh (<span class="hljs-keyword">push</span>)</code></pre></div>
                 
   <div id="waline"></div>
   <script type="text/javascript">
-    Fluid.utils.loadComments('#waline', function() {
+    Fluid.utils.lazyComments('waline', function() {
       Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@waline/client@0.14.8/dist/Waline.min.js', function () {
         new Waline({
           el: "#waline",
-          placeholder: "输入昵称和邮箱就可以畅所欲言啦✪ ω ✪",
+          placeholder: "输入昵称就可以畅所欲言啦✪ ω ✪\n输入邮箱还可以收到回复通知哦( •̀ .̫ •́ )✧",
           path: window.location.pathname,
           avatar: "retro",
           meta: ["nick","mail","link"],
@@ -384,7 +360,7 @@ upstream ssh (<span class="hljs-keyword">push</span>)</code></pre></div>
           serverURL: "https://waline-wowyijiu.vercel.app",
           avatarCDN: "",
           avatarForce: false,
-          requiredFields: ["nick","mail"],
+          requiredFields: ["nick"],
           emojiCDN: "",
           emojiMaps: null,
           anonymous: true,
@@ -392,7 +368,9 @@ upstream ssh (<span class="hljs-keyword">push</span>)</code></pre></div>
       });
     });
   </script>
-  <noscript>Please enable JavaScript to view the comments</noscript>
+  <noscript>Please enable JavaScript to view the
+    <a target="_blank" href="https://waline.js.org" rel="nofollow noopener noopener">comments powered by Waline.</a>
+  </noscript>
 
 
               </article>
@@ -456,30 +434,6 @@ upstream ssh (<span class="hljs-keyword">push</span>)</code></pre></div>
      <i class="iconfont icon-copyright"></i> 2021 <a href="https://WowYiJiu.github.io" target="_blank" rel="nofollow noopener"><span>WowYiJiu</span></a> <br> 框架 <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> 主题 <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
   </div>
   
-  <div class="statistics">
-    
-    
-
-    
-      
-        <!-- 不蒜子统计PV -->
-        <span id="busuanzi_container_site_pv" style="display: none">
-            总访问量 
-            <span id="busuanzi_value_site_pv"></span>
-             次
-          </span>
-      
-      
-        <!-- 不蒜子统计UV -->
-        <span id="busuanzi_container_site_uv" style="display: none">
-            总访客数 
-            <span id="busuanzi_value_site_uv"></span>
-             人
-          </span>
-      
-    
-  </div>
-
 
   
 
@@ -503,6 +457,7 @@ upstream ssh (<span class="hljs-keyword">push</span>)</code></pre></div>
 
 <script  src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js" ></script>
 <script  src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/debouncer.js" ></script>
 <script  src="/js/events.js" ></script>
 <script  src="/js/plugins.js" ></script>
 
@@ -534,8 +489,6 @@ upstream ssh (<span class="hljs-keyword">push</span>)</code></pre></div>
   <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2.0.6/dist/clipboard.min.js" ></script>
 
 
-
-  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
 
 
@@ -579,10 +532,14 @@ upstream ssh (<span class="hljs-keyword">push</span>)</code></pre></div>
 
 
 
+  
+<script src="/js/codeblock.js"></script>
+
+
 
 <!-- 主题的启动项 保持在最底部 -->
 <script  src="/js/boot.js" ></script>
 
 
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":0.8},"log":false});</script></body>
 </html>
