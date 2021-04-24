@@ -261,31 +261,31 @@
             <h1 style="display: none">用Git手动同步上游分支代码</h1>
             
             <div class="markdown-body">
-              <h1 id="Git常用命令"><a href="#Git常用命令" class="headerlink" title="Git常用命令"></a>Git常用命令</h1><figure class="highlight text"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs text">$ git init # 初始化Git仓库<br>$ git clone [url] # 拷贝一个Git仓库到本地<br>$ git add . # 将所有修改过的文件提交暂存区<br>$ git status # 显示有变更的文件<br>$ git diff # 显示暂存区和工作区的差异<br>$ git commit -m [message] # 提交暂存区到仓库区<br>$ git branch # 列出所有本地分支<br>$ git branch [branch-name] # 新建一个分支，但依然停留在当前分支<br>$ git checkout -b [branch] # 新建一个分支，并切换到该分支<br>$ git merge [branch] # 合并指定分支到当前分支<br>$ git log # 显示当前分支的版本历史<br>$ git reflog # 显示当前分支的最近几次提交<br>$ git fetch [remote] # 下载远程仓库的所有变动<br>$ git remote -v # 显示所有远程仓库<br>$ git pull [remote] [branch] # 取回远程仓库的变化，并与本地分支合并<br>$ git push [remote] [branch] # 上传本地指定分支到远程仓库<br>$ git fetch [remote] # 下载远程仓库的所有变动<br>$ git reset --hard [版本号] # 将本地代码回退到指定版本<br></code></pre></div></td></tr></table></figure>
+              <h1 id="Git常用命令"><a href="#Git常用命令" class="headerlink" title="Git常用命令"></a>Git常用命令</h1><figure class="highlight text"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs TEXT">$ git init # 初始化Git仓库<br>$ git clone [url] # 拷贝一个Git仓库到本地<br>$ git add . # 将所有修改过的文件提交暂存区<br>$ git status # 显示有变更的文件<br>$ git diff # 显示暂存区和工作区的差异<br>$ git commit -m [message] # 提交暂存区到仓库区<br>$ git branch # 列出所有本地分支<br>$ git branch [branch-name] # 新建一个分支，但依然停留在当前分支<br>$ git checkout -b [branch] # 新建一个分支，并切换到该分支<br>$ git merge [branch] # 合并指定分支到当前分支<br>$ git log # 显示当前分支的版本历史<br>$ git reflog # 显示当前分支的最近几次提交<br>$ git fetch [remote] # 下载远程仓库的所有变动<br>$ git remote -v # 显示所有远程仓库<br>$ git pull [remote] [branch] # 取回远程仓库的变化，并与本地分支合并<br>$ git push [remote] [branch] # 上传本地指定分支到远程仓库<br>$ git fetch [remote] # 下载远程仓库的所有变动<br>$ git reset --hard [版本号] # 将本地代码回退到指定版本<br></code></pre></div></td></tr></table></figure>
 <h1 id="Github同步上游分支代码"><a href="#Github同步上游分支代码" class="headerlink" title="Github同步上游分支代码"></a>Github同步上游分支代码</h1><div class="note note-success">
             <p><strong>Github进行fork后如何与上游仓库同步：重新fork很省事，但不如反复练习版本合并。</strong></p>
           </div>
 
 <p>1.查看远程仓库状态</p>
-<figure class="highlight scss"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs scss">$ git remote -v<br>origin  git<span class="hljs-keyword">@github</span>.<span class="hljs-attribute">com</span>:username/fork.git (fetch)<br>origin  git<span class="hljs-keyword">@github</span>.<span class="hljs-attribute">com</span>:username/fork.git (push)<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs SHELL"><span class="hljs-meta">$</span><span class="bash"> git remote -v</span><br>origin  git@github.com:username/fork.git (fetch)<br>origin  git@github.com:username/fork.git (push)<br></code></pre></div></td></tr></table></figure>
 
 <p>2.添加upstream(即fork的原仓库)</p>
-<figure class="highlight routeros"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs routeros">$ git remote <span class="hljs-builtin-name">add</span> upstream ssh.git<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs SHELL"><span class="hljs-meta">$</span><span class="bash"> git remote add upstream ssh.git</span><br></code></pre></div></td></tr></table></figure>
 
 <p>3.查看是否添加成功</p>
-<figure class="highlight perl"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs perl">$ git remote -v<br>origin  git@github.com:username/fork.git (fetch)<br>origin  git@github.com:username/fork.git (<span class="hljs-keyword">push</span>)<br>upstream  ssh (fetch)<br>upstream ssh (<span class="hljs-keyword">push</span>)<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs SHELL"><span class="hljs-meta">$</span><span class="bash"> git remote -v</span><br>origin  git@github.com:username/fork.git (fetch)<br>origin  git@github.com:username/fork.git (push)<br>upstream  ssh (fetch)<br>upstream ssh (push)<br></code></pre></div></td></tr></table></figure>
 
 <p>4.拉取上游仓库更新</p>
-<figure class="highlight elixir"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs elixir"><span class="hljs-variable">$ </span>git fetch upstream<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs SHELL"><span class="hljs-meta">$</span><span class="bash"> git fetch upstream</span><br></code></pre></div></td></tr></table></figure>
 
 <p>5.切换到主分支</p>
-<figure class="highlight crmsh"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs crmsh">$ git checkout <span class="hljs-literal">master</span><br></code></pre></div></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs SHELL"><span class="hljs-meta">$</span><span class="bash"> git checkout master</span><br></code></pre></div></td></tr></table></figure>
 
 <p>6.合并上游更新</p>
-<figure class="highlight cos"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs cos">$ git <span class="hljs-keyword">merge</span> upstream/master<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs SHELL"><span class="hljs-meta">$</span><span class="bash"> git merge upstream/master</span><br></code></pre></div></td></tr></table></figure>
 
 <p>7.将更新后的代码推送到自己的远程仓库</p>
-<figure class="highlight maxima"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs maxima">$ git <span class="hljs-built_in">push</span> <span class="hljs-built_in">origin</span> master<br></code></pre></div></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter hljs"><div class="hljs code-wrapper"><pre><span class="line">1</span><br></pre></div></td><td class="code"><div class="hljs code-wrapper"><pre><code class="hljs SHELL"><span class="hljs-meta">$</span><span class="bash"> git push origin master</span><br></code></pre></div></td></tr></table></figure>
 
 <div class="note note-info">
             <p>第四五六步可以合成一个命令<code>$ git pull upstream master</code></p>
@@ -350,7 +350,7 @@
       Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@waline/client@0.14.8/dist/Waline.min.js', function () {
         new Waline({
           el: "#waline",
-          placeholder: "输入昵称就可以畅所欲言啦✪ ω ✪\n输入邮箱还可以收到回复通知哦( •̀ .̫ •́ )✧",
+          placeholder: "填写昵称就可以畅所欲言啦✪ ω ✪\n填写邮箱还可以收到回复通知哦( •̀ .̫ •́ )✧",
           path: window.location.pathname,
           avatar: "retro",
           meta: ["nick","mail","link"],
@@ -431,7 +431,7 @@
 
   <footer class="text-center mt-5 py-3">
   <div class="footer-content">
-     <i class="iconfont icon-copyright"></i> 2021 <a href="https://WowYiJiu.github.io" target="_blank" rel="nofollow noopener"><span>WowYiJiu</span></a> <br> 框架 <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> 主题 <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+     <i class="iconfont icon-copyright"></i> 2021 <a href="https://WowYiJiu.github.io" target="_self"><span>WowYiJiu</span></a> <a href="https://wowyijiu.github.io/atom.xml" target="_blank" rel="nofollow noopener"><span><i class="iconfont icon-rss"></i><span></a> <br> <p><a style="margin-inline:5px" target="_blank" rel="nofollow noopener" href="https://hexo.io/"><img src="https://img.shields.io/badge/Frame-Hexo-blue?style=flat&logo=hexo" srcset="/img/loading.gif" lazyload title="博客框架为 Hexo" alt="HEXO"></a><a style="margin-inline:5px" target="_blank" rel="nofollow noopener" href="https://github.com/fluid-dev/hexo-theme-fluid"><img src="https://img.shields.io/badge/Theme-Fluid-%237B00FF?style=flat&logo=fortran" srcset="/img/loading.gif" lazyload title="主题采用 Fluid" alt="Fluid"></a><a style="margin-inline:5px" target="_blank" rel="nofollow noopener" href="https://www.jsdelivr.com/"><img src="https://img.shields.io/badge/CDN-jsDelivr-orange?style=flat&logo=jsDelivr" srcset="/img/loading.gif" lazyload title="本站使用 Jsdelivr 为静态资源提供CDN加速" alt="Jsdelivr"></a><a style="margin-inline:5px" target="_blank" rel="nofollow noopener" href="https://github.com/WowYiJiu"><img src="https://img.shields.io/badge/Source-Github-%23000000?style=flat&logo=Github" srcset="/img/loading.gif" lazyload title="本站项目由 GitHub 托管" alt="GitHub"></a><a style="margin-inline:5px "target="_blank" rel="nofollow noopener" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh"><img src="https://img.shields.io/badge/Copyright-CC%20BY--SA%204.0-%2300CAFF?style=flat&logo=Claris" srcset="/img/loading.gif" lazyload alt="img" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"></a></p> 
   </div>
   
 
@@ -532,14 +532,15 @@
 
 
 
-  
-<script src="/js/codeblock.js"></script>
-
-
 
 <!-- 主题的启动项 保持在最底部 -->
 <script  src="/js/boot.js" ></script>
 
-
+  <!--动态线条背景-->
+<script type="text/javascript"
+color="122 103 238" opacity='0.7' zIndex="-2" count="200" src="/js/DynamicLines.js">
+</script>
+  <!--鼠标点击爱心-->
+<script src="/js/mouse.js"></script>
 <script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/hijiki.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"react":{"opacity":0.8},"log":false});</script></body>
 </html>
