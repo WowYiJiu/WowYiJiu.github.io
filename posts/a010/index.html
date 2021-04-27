@@ -14,13 +14,39 @@
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   
   <meta name="theme-color" content="#a5dff9">
-  <meta name="description" content="">
+  <meta name="description" content="用Github Actions自动同步上游分支代码">
   <meta name="author" content="Yi Jiu">
   <meta name="keywords" content="">
   
-  <title>分类 - Github - WowYiJiu</title>
+  <title>通过RepoSync的方式进行同步代码 - WowYiJiu</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4.0.0/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      
+        
+          
+          
+          
+        
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.22.0/themes/prism-tomorrow.min.css" />
+      
+      
+        <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.22.0/plugins/line-numbers/prism-line-numbers.min.css" />
+      
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.css" />
+  
 
 
 
@@ -49,7 +75,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand"
@@ -206,9 +232,51 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="分类 - Github">
+            <span class="h2" id="subtitle" title="通过RepoSync的方式进行同步代码">
               
             </span>
+
+            
+              <div class="mt-3">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-author" aria-hidden="true"></i>
+      Yi Jiu
+    </span>
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-04-26 20:45" pubdate>
+        2021年4月26日 晚上
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      409 字
+    </span>
+  
+
+  
+    
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      5
+       分钟
+    </span>
+  
+
+  
+  
+</div>
 
             
           </div>
@@ -221,46 +289,160 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 2 篇文章</p>
-  <hr>
-  
-  
-    
       
-      <p class="h5">2021</p>
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">通过RepoSync的方式进行同步代码</h1>
+            
+            <div class="markdown-body">
+              <p>&#8194;&#8194;&#8194;&#8194;GitHub Ac­tions的配置文件叫做 work­flow 文件，存放在代码仓库的<code>.github/workflows</code>目录中。work­flow文件采用 YAML 格式，文件名可以任意取，但是后缀名统一为<code>.yml</code>，比如<code>WowYiJiu.yml</code>。一个库可以有多个<code>work­flow</code>文件，GitHub只要发现.<code>github/workflows</code>目录里面有<code>.yml</code>文件，就会按照文件中所指定的触发条件在符合条件时自动运行该文件中的工作流程。</p>
+<h2 id="一：在仓库的-github-workflows路径下添加workflow文件"><a href="#一：在仓库的-github-workflows路径下添加workflow文件" class="headerlink" title="一：在仓库的.github/workflows路径下添加workflow文件"></a>一：在仓库的<code>.github/workflows</code>路径下添加workflow文件</h2><p><strong>下面是一个同步上游分支代码的workflow文件示例</strong></p>
+<div class="code-wrapper"><pre class="line-numbers language-yaml" data-language="yaml"><code class="language-yaml"><span class="token key atrule">name</span><span class="token punctuation">:</span> sync<span class="token punctuation">-</span>WowYiJiu <span class="token comment"># 名称随意</span>
+<span class="token key atrule">on</span><span class="token punctuation">:</span> 
+  <span class="token key atrule">schedule</span><span class="token punctuation">:</span> 
+  <span class="token punctuation">-</span> <span class="token key atrule">cron</span><span class="token punctuation">:</span> <span class="token string">'0 0 * * *'</span>
+  <span class="token key atrule">workflow_dispatch</span><span class="token punctuation">:</span> 
+  <span class="token key atrule">watch</span><span class="token punctuation">:</span> 
+  <span class="token key atrule">types</span><span class="token punctuation">:</span> started 
+  <span class="token key atrule">repository_dispatch</span><span class="token punctuation">:</span> 
+  <span class="token key atrule">types</span><span class="token punctuation">:</span> sync<span class="token punctuation">-</span>WowYiJiu
+ <span class="token key atrule">jobs</span><span class="token punctuation">:</span> 
+  <span class="token key atrule">repo-sync</span><span class="token punctuation">:</span> 
+  <span class="token key atrule">env</span><span class="token punctuation">:</span> 
+  <span class="token key atrule">PAT</span><span class="token punctuation">:</span> $<span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span> secrets.PAT <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span> 
+  <span class="token key atrule">runs-on</span><span class="token punctuation">:</span> ubuntu<span class="token punctuation">-</span>latest 
+  <span class="token key atrule">if</span><span class="token punctuation">:</span> github.event.repository.owner.id == github.event.sender.id 
+  <span class="token key atrule">steps</span><span class="token punctuation">:</span> 
+     <span class="token punctuation">-</span> <span class="token key atrule">uses</span><span class="token punctuation">:</span> actions/checkout@v2 
+     <span class="token key atrule">with</span><span class="token punctuation">:</span> 
+     <span class="token key atrule">persist-credentials</span><span class="token punctuation">:</span> <span class="token boolean important">false</span> 
     
-    <a href="/posts/a010/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">通过RepoSync的方式进行同步代码</span>
-      <time style="float: right;">04-26</time>
-    </a>
-  
-    
-    <a href="/posts/49e2/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">用Git手动同步上游分支代码</span>
-      <time style="float: right;">04-18</time>
-    </a>
-  
-</div>
+     <span class="token punctuation">-</span> <span class="token key atrule">name</span><span class="token punctuation">:</span> sync WowYiJiu 
+     <span class="token key atrule">uses</span><span class="token punctuation">:</span> repo<span class="token punctuation">-</span>sync/github<span class="token punctuation">-</span>sync@v2 
+     <span class="token key atrule">if</span><span class="token punctuation">:</span> env.PAT 
+     <span class="token key atrule">with</span><span class="token punctuation">:</span> 
+     <span class="token key atrule">source_repo</span><span class="token punctuation">:</span> <span class="token string">"git@github.com:username/repository.git"</span> <span class="token comment"># 上游仓库地址</span>
+     <span class="token key atrule">source_branch</span><span class="token punctuation">:</span> <span class="token string">"main"</span> 
+     <span class="token key atrule">destination_branch</span><span class="token punctuation">:</span> <span class="token string">"main"</span> <span class="token comment"># 按照自己仓库分支名称修改</span>
+     <span class="token key atrule">github_token</span><span class="token punctuation">:</span> $<span class="token punctuation">&#123;</span><span class="token punctuation">&#123;</span> secrets.PAT <span class="token punctuation">&#125;</span><span class="token punctuation">&#125;</span> <span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre></div>
+<h2 id="二：申请Personal-access-tokens"><a href="#二：申请Personal-access-tokens" class="headerlink" title="二：申请Personal access tokens"></a>二：申请<code>Personal access tokens</code></h2><p>&#8194;&#8194;&#8194;&#8194;点击Github<a target="_blank" rel="noopener" href="https://github.com/settings/profile">用户设置</a>的<code>Developer setting</code>，然后点击<a target="_blank" rel="noopener" href="https://github.com/settings/tokens/new"><code>Personal access tokens</code></a>来生成token，勾选<code>repo</code>权限生成就可以了，生成的token要记下来，因为只会显示一次哦，不然就只能再重新生成一次。</p>
+<h2 id="三：将申请到的token填入Screts"><a href="#三：将申请到的token填入Screts" class="headerlink" title="三：将申请到的token填入Screts"></a>三：将申请到的token填入Screts</h2><p>&#8194;&#8194;&#8194;&#8194;在仓库中点击<code>Settings</code>→<code>Screts</code>→<code>New repository scret</code>，在<code>Name</code>中填写PAT(<code>Name</code>值是根据workflow文件中的环境变量来的)，在<code>Value</code>中填入申请到的token。然后就可以愉快地用Github Actions自动同步上游分支代码啦。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://docs.github.com/cn/actions">Github Actions官方文档</a></p>
 
-
-
-
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/Github/">Github</a>
+                    
+                  </div>
+                
+                
+                  <div class="post-meta">
+                    <i class="iconfont icon-tags"></i>
+                    
+                      <a class="hover-with-bg" href="/tags/Github/">Github</a>
+                    
+                      <a class="hover-with-bg" href="/tags/Github-Actions/">Github Actions</a>
+                    
+                  </div>
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/posts/49e2/">
+                        <span class="hidden-mobile">用Git手动同步上游分支代码</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+              <!-- Comments -->
+              <article class="comments" id="comments" lazyload>
+                
+                  
+                
+                
+  <div id="waline"></div>
+  <script type="text/javascript">
+    Fluid.utils.lazyComments('waline', function() {
+      Fluid.utils.createScript('https://cdn.jsdelivr.net/npm/@waline/client@0.14.8/dist/Waline.min.js', function () {
+        new Waline({
+          el: "#waline",
+          placeholder: "填写昵称就可以畅所欲言啦✪ ω ✪\n填写邮箱还可以收到回复通知哦( •̀ .̫ •́ )✧",
+          path: window.location.pathname,
+          avatar: "retro",
+          meta: ["nick","mail","link"],
+          pageSize: "10",
+          lang: "zh-CN",
+          highlight: true,
+          serverURL: "https://waline-wowyijiu.vercel.app",
+          avatarCDN: "",
+          avatarForce: false,
+          requiredFields: ["nick"],
+          emojiCDN: "",
+          emojiMaps: null,
+          anonymous: true,
+        });
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the
+    <a target="_blank" href="https://waline.js.org" rel="nofollow noopener noopener">comments powered by Waline.</a>
+  </noscript>
+
+
+              </article>
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
 
     
@@ -343,9 +525,15 @@
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/tocbot@4.12.0/dist/tocbot.min.js" ></script>
 
 
 
+  <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.5.7/dist/jquery.fancybox.min.js" ></script>
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4.3.0/anchor.min.js" ></script>
 
 
 

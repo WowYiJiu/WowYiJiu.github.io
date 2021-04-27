@@ -737,23 +737,13 @@ img[lazyload] {
   }
 }
 .code-wrapper {
+  position: relative;
   overflow: hidden;
   border-radius: 5px;
-  box-shadow: 0px 10px 30px 0px rgba(0,0,0,0.4);
+/*box-shadow: 0 10px 30px 0px rgba(0, 0, 0, 0.4);*/
   margin: 35px 0;
   margin-top: 10px;
   margin-bottom: 0;
-}
-.code-wrapper ::-webkit-scrollbar {
-  height: 10px;
-}
-.code-wrapper ::-webkit-scrollbar-track {
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-  border-radius: 10px;
-}
-.code-wrapper ::-webkit-scrollbar-thumb {
-  border-radius: 10px;
-  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }
 .code-wrapper::before {
   content: attr(data-rel);
@@ -1057,7 +1047,6 @@ figure.highlight td.code {
 }
 figure.highlight td.gutter {
   display: table-cell;
-  border-radius: 5px;
 }
 figure.highlight td.gutter:not(.hljs) {
   background-color: #f6f8fa;
@@ -1071,6 +1060,7 @@ figure.highlight td.gutter pre {
   line-height: 1.5;
   background-color: inherit;
   border-radius: initial;
+/*border-right 1px solid #999*/
 }
 figure.highlight td.gutter pre span.line {
   color: #999;
@@ -1339,6 +1329,12 @@ mjx-container svg:focus,
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+  left: -66px !important;
+}
+.aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+  left: 0px !important;
 }
 .index-card {
   margin-bottom: 2.5rem;
