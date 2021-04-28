@@ -3,11 +3,11 @@
   <title>WowYiJiu</title>
   
   
-  <link href="http://wowyijiu.github.io/atom.xml" rel="self"/>
+  <link href="http://wowyijiu.com/atom.xml" rel="self"/>
   
-  <link href="http://wowyijiu.github.io/"/>
+  <link href="http://wowyijiu.com/"/>
   <updated>2021-04-26T12:45:46.000Z</updated>
-  <id>http://wowyijiu.github.io/</id>
+  <id>http://wowyijiu.com/</id>
   
   <author>
     <name>Yi Jiu</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>通过RepoSync的方式进行同步代码</title>
-    <link href="http://wowyijiu.github.io/posts/a010/"/>
-    <id>http://wowyijiu.github.io/posts/a010/</id>
+    <link href="http://wowyijiu.com/posts/a010/"/>
+    <id>http://wowyijiu.com/posts/a010/</id>
     <published>2021-04-26T12:45:46.000Z</published>
     <updated>2021-04-26T12:45:46.000Z</updated>
     
@@ -30,19 +30,19 @@
     
     
     
-    <category term="Github" scheme="http://wowyijiu.github.io/categories/Github/"/>
+    <category term="Github" scheme="http://wowyijiu.com/categories/Github/"/>
     
     
-    <category term="Github" scheme="http://wowyijiu.github.io/tags/Github/"/>
+    <category term="Github" scheme="http://wowyijiu.com/tags/Github/"/>
     
-    <category term="Github Actions" scheme="http://wowyijiu.github.io/tags/Github-Actions/"/>
+    <category term="Github Actions" scheme="http://wowyijiu.com/tags/Github-Actions/"/>
     
   </entry>
   
   <entry>
     <title>用Git手动同步上游分支代码</title>
-    <link href="http://wowyijiu.github.io/posts/49e2/"/>
-    <id>http://wowyijiu.github.io/posts/49e2/</id>
+    <link href="http://wowyijiu.com/posts/49e2/"/>
+    <id>http://wowyijiu.com/posts/49e2/</id>
     <published>2021-04-18T08:33:29.000Z</published>
     <updated>2021-04-18T08:33:29.000Z</updated>
     
@@ -53,12 +53,12 @@
     
     
     
-    <category term="Github" scheme="http://wowyijiu.github.io/categories/Github/"/>
+    <category term="Github" scheme="http://wowyijiu.com/categories/Github/"/>
     
     
-    <category term="Git" scheme="http://wowyijiu.github.io/tags/Git/"/>
+    <category term="Git" scheme="http://wowyijiu.com/tags/Git/"/>
     
-    <category term="Github" scheme="http://wowyijiu.github.io/tags/Github/"/>
+    <category term="Github" scheme="http://wowyijiu.com/tags/Github/"/>
     
   </entry>
   
