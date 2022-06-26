@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>YiJiu&#39;s Blog</title>
+  <icon>https://wowyijiu.com/icon.png</icon>
+  <subtitle>WowYiJiu</subtitle>
+  <link href="https://wowyijiu.com/atom.xml" rel="self"/>
+  
+  <link href="https://wowyijiu.com/"/>
+  <updated>2022-06-25T07:00:27.909Z</updated>
+  <id>https://wowyijiu.com/</id>
+  
+  <author>
+    <name>Yi Jiu</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Hello World</title>
+    <link href="https://wowyijiu.com/posts/3eeb/"/>
+    <id>https://wowyijiu.com/posts/3eeb/</id>
+    <published>2022-06-25T07:00:27.909Z</published>
+    <updated>2022-06-25T07:00:27.909Z</updated>
+    
+    
+    <summary type="html">欢迎来到Yi Jiu&#39;s Blog!</summary>
+    
+    
+    
+    <category term="Reset" scheme="https://wowyijiu.com/categories/Reset/"/>
+    
+    
+    <category term="Reset" scheme="https://wowyijiu.com/tags/Reset/"/>
+    
+  </entry>
+  
+</feed>

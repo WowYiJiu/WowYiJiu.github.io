@@ -1,0 +1,12 @@
+#hexo robots.txt
+User-agent: *
+
+Allow: /
+
+Disallow: /404/
+Disallow: /js/
+Disallow: /css/
+Disallow: /fonts/
+
+Sitemap: http://wowyijiu.com/sitemap.xml
+Sitemap: http://wowyijiu.com/baidusitemap.xml
